@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ass 40</title>
+        <style>
+            body {
+                margin: 0;
+                height: 100vh;
+            }
+
+            .container {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 10%;
+            }
+
+            .square-container,
+            .loading-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .loading-container {
+                gap: 1rem;
+            }
+
+            .sq {
+                width: 5rem;
+                aspect-ratio: 1/1;
+            }
+
+            .red {
+                background-color: red;
+            }
+
+            .green {
+                background-color: green;
+            }
+
+            .blue {
+                background-color: blue;
+            }
+
+            .loading-indicator {
+                background-color: burlywood;
+                width: 10px;
+                aspect-ratio: 1/1;
+                border-radius: 9999px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="square-container">
+                <div class="red sq"></div>
+                <div class="green sq"></div>
+                <div class="blue sq"></div>
+            </div>
+
+            <div class="loading-container">
+                <div class="loading-indicator"></div>
+                <div class="loading-indicator"></div>
+                <div class="loading-indicator"></div>
+                <div class="loading-indicator"></div>
+                <div class="loading-indicator"></div>
+            </div>
+        </div>
+    </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        const loadingIndicators = document.querySelectorAll('.loading-indicator')
+        const red = document.getElementsByClassName('red')[0]
+        const green = document.getElementsByClassName('green')[0]
+        const blue = document.getElementsByClassName('blue')[0]
+        const tl = gsap.timeline()
+
+        gsap.fromTo(loadingIndicators,
+            {
+                y: -20
+            },
+            {
+                y: 0,
+                stagger: 0.1,
+                yoyo: true,
+                repeat: -1,
+            }
+        )
+
+        tl
+        .from(blue, { x: 0 })
+        .to(blue, { x: 100 })
+        .to(green, { x: 100 }, "+2")
+        .to(blue, { y: 100 })
+        .to(green, { x: 180 })
+        .to(blue, { y: 200 })
+        .to(blue, { x: -250 })
+        .to(blue, { y: 0 })
+        .to(red, { x: 80 })
+        .to(blue, { x: -175 })
+        .to(green, { x: 100 })
+
+                
+    </script>
+</html>
